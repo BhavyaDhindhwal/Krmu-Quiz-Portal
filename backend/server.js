@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path = require("path");
 require("dotenv").config();
 
 const authRoutes = require("./routes/authRoutes");
@@ -85,19 +86,39 @@ app.use("/api/settings", settingsRoutes);
 
 app.use("/api/students", studentRoutes);
 
+// ================================
+// Serve Frontend
+// ================================
+
+app.use(express.static(path.join(__dirname, "../frontend")));
+
 // =====================================
-// 404 Route
+// 404 API Route
 // =====================================
 
-app.use((req, res) => {
+app.use("/api", (req, res) => {
 
     res.status(404).json({
 
-        success: false,
+        success:false,
 
-        message: "Route Not Found"
+        message:"API Route Not Found"
 
     });
+
+});
+
+// =====================================
+// Frontend Route
+// =====================================
+
+app.get("*", (req, res) => {
+
+    res.sendFile(
+
+        path.join(__dirname, "../frontend/index.html")
+
+    );
 
 });
 
