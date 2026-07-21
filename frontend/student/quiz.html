@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>KRMU Quiz Portal</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet"
+        href="../css/quiz.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- ======================
+Header
+====================== -->
+
+<header>
+
+<div class="logo">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+<div>
+
+<h2>KRMU Quiz Portal</h2>
+
+<p>
+
+Online Examination System
+
+</p>
+
+</div>
+
+</div>
+
+<div class="timer-box">
+
+<i class="fa-regular fa-clock"></i>
+
+<span id="timer">
+
+02:00
+
+</span>
+
+</div>
+
+</header>
+
+<!-- ======================
+Progress
+====================== -->
+
+<div class="progress-card">
+
+<div class="progress-info">
+
+<h3 id="questionNumber">
+
+Question 1 of 20
+
+</h3>
+
+<span id="progressText">
+
+0%
+
+</span>
+
+</div>
+
+<div class="progress">
+
+<div id="progress"
+
+class="progress-fill">
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ======================
+Question Card
+====================== -->
+
+<div class="quiz-card">
+
+<div class="question-box">
+
+<h2 id="question">
+
+Loading...
+
+</h2>
+
+</div>
+
+<div id="options"
+
+class="options">
+
+</div>
+
+<div class="buttons">
+
+<button
+class="prev"
+
+onclick="previousQuestion()">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Previous
+
+</button>
+
+<button
+class="next"
+
+onclick="nextQuestion()">
+
+Next
+
+<i class="fa-solid fa-arrow-right"></i>
+
+</button>
+
+</div>
+
+</div>
+
+<!-- ======================
+Submit
+====================== -->
+
+<div class="submit-section">
+
+    <button
+        class="submit-btn"
+        onclick="submitQuiz()">
+
+        <i class="fa-solid fa-paper-plane"></i>
+
+        Submit Quiz
+
+    </button>
+
+</div>
+
+<!-- ======================
+Instructions
+====================== -->
+
+<div class="instruction-card">
+
+    <h3>
+
+        <i class="fa-solid fa-circle-info"></i>
+
+        Examination Instructions
+
+    </h3>
+
+    <ul>
+
+        <li>
+
+            Each question carries equal marks.
+
+        </li>
+
+        <li>
+
+            You can navigate using Previous, Next or Question Palette.
+
+        </li>
+
+        <li>
+
+            Green = Answered
+
+        </li>
+
+        <li>
+
+            Blue = Current Question
+
+        </li>
+
+        <li>
+
+            Gray = Not Answered
+
+        </li>
+
+        <li>
+
+            Quiz will auto submit when the timer ends.
+
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- ======================
+Footer
+====================== -->
+
+<footer>
+
+    © 2026 KRMU Quiz Portal |
+
+    Designed By
+
+    <strong>
+
+        Bhavya Dhindhwal
+
+    </strong>
+
+</footer>
+
+</div>
+
+<script src="../js/quiz.js"></script>
+
+</body>
+
+</html>

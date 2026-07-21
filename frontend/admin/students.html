@@ -1,0 +1,749 @@
+(<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Students | KRMU Quiz Portal</title>
+
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/admin.css">
+<link rel="stylesheet" href="../css/students.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<!-- =========================
+SIDEBAR
+========================= -->
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<i class="fa-solid fa-user-shield"></i>
+
+<div>
+
+<h2>KRMU</h2>
+
+<p>Admin Panel</p>
+
+</div>
+
+</div>
+
+<ul class="menu">
+
+<li>
+
+<a href="dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+<span>Dashboard</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="subjects.html">
+
+<i class="fa-solid fa-book"></i>
+
+<span>Subjects</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="questions.html">
+
+<i class="fa-solid fa-circle-question"></i>
+
+<span>Questions</span>
+
+</a>
+
+</li>
+
+<li class="active">
+
+<a href="students.html">
+
+<i class="fa-solid fa-users"></i>
+
+<span>Students</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="results.html">
+
+<i class="fa-solid fa-chart-column"></i>
+
+<span>Results</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="certificates.html">
+
+<i class="fa-solid fa-certificate"></i>
+
+<span>Certificates</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+<span>Settings</span>
+
+</a>
+
+</li>
+
+</ul>
+
+<div class="logout">
+
+<button onclick="logout()">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</button>
+
+</div>
+
+</aside>
+
+<!-- =========================
+MAIN
+========================= -->
+
+<main class="main">
+
+<header>
+
+<div>
+
+<h1>
+
+Student Management
+
+</h1>
+
+<p>
+
+View and Manage Registered Students
+
+</p>
+
+</div>
+
+</header>
+<!-- =========================
+SEARCH & STATS
+========================= -->
+
+<section class="toolbar">
+
+    <div class="search-box">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+            type="text"
+            id="searchStudent"
+            placeholder="Search Student by Name or Email">
+
+    </div>
+
+    <div class="toolbar-right">
+
+        <button
+            class="add-btn"
+            onclick="openStudentModal()">
+
+            <i class="fa-solid fa-user-plus"></i>
+
+            Add Student
+
+        </button>
+
+        <span id="studentCount">
+
+            Total Students : 0
+
+        </span>
+
+    </div>
+
+</section>
+<!-- =========================
+STUDENTS TABLE
+========================= -->
+
+<section class="table-card">
+
+<div class="table-header">
+
+<h2>
+
+Registered Students
+
+</h2>
+
+</div>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>#</th>
+
+<th>Student Name</th>
+
+<th>Email</th>
+
+<th>Course</th>
+
+<th>Semester</th>
+
+<th>Registered On</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="studentTable">
+
+<tr>
+
+<td colspan="7" class="loading">
+
+<i class="fa-solid fa-spinner fa-spin"></i>
+
+Loading Students...
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<!-- =========================
+EMPTY STATE
+========================= -->
+
+<div
+id="emptyState"
+class="empty-state"
+style="display:none;">
+
+<i class="fa-solid fa-user-graduate"></i>
+
+<h2>
+
+No Students Found
+
+</h2>
+
+<p>
+
+No registered students are available.
+
+</p>
+
+</div>
+
+<!-- =========================================
+ADD STUDENT MODAL
+========================================= -->
+
+<div id="studentModal" class="modal">
+
+    <div class="modal-content student-modal">
+
+        <!-- Header -->
+
+        <div class="modal-header">
+
+            <h2>
+
+                <i class="fa-solid fa-user-plus"></i>
+
+                Add New Student
+
+            </h2>
+
+            <button
+
+                class="close-btn"
+
+                onclick="closeStudentModal()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <!-- Form -->
+
+        <form
+
+            id="studentForm"
+
+            enctype="multipart/form-data">
+
+            <!-- Photo -->
+
+            <div class="photo-upload">
+
+                <img
+
+                    id="photoPreview"
+
+                    src="../images/user.png"
+
+                    alt="Student">
+
+                <label
+
+                    for="profilePhoto"
+
+                    class="upload-btn">
+
+                    <i class="fa-solid fa-camera"></i>
+
+                    Upload Photo
+
+                </label>
+
+                <input
+
+                    type="file"
+
+                    id="profilePhoto"
+
+                    accept="image/*"
+
+                    hidden>
+
+            </div>
+
+            <!-- Row 1 -->
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+
+                        Full Name
+
+                    </label>
+
+                    <input
+
+                        type="text"
+
+                        id="fullName"
+
+                        placeholder="Enter Full Name"
+
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+
+                        Roll Number
+
+                    </label>
+
+                    <input
+
+                        type="text"
+
+                        id="rollNumber"
+
+                        placeholder="Enter Roll Number"
+
+                        required>
+
+                </div>
+
+            </div>
+
+            <!-- Row 2 -->
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+
+                        Email
+
+                    </label>
+
+                    <input
+
+                        type="email"
+
+                        id="email"
+
+                        placeholder="Enter Email"
+
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+
+                        Phone
+
+                    </label>
+
+                    <input
+
+                        type="text"
+
+                        id="phone"
+
+                        placeholder="Enter Phone"
+
+                        required>
+
+                </div>
+
+            </div>
+
+            <!-- Row 3 -->
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+
+                        Course
+
+                    </label>
+
+                    <select id="course">
+
+                        <option>
+
+                            B.Tech Full Stack Development
+
+                        </option>
+
+                        <option>
+
+                            B.Tech Computer Science
+
+                        </option>
+
+                        <option>
+
+                            B.Tech AI & ML
+
+                        </option>
+
+                        <option>
+
+                            BCA
+
+                        </option>
+
+                        <option>
+
+                            MCA
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+
+                        Semester
+
+                    </label>
+
+                    <select id="semester">
+
+                        <option>1</option>
+
+                        <option>2</option>
+
+                        <option>3</option>
+
+                        <option>4</option>
+
+                        <option>5</option>
+
+                        <option>6</option>
+
+                        <option>7</option>
+
+                        <option>8</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <!-- Row 4 -->
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+
+                        Department
+
+                    </label>
+
+                    <input
+
+                        type="text"
+
+                        id="department"
+
+                        value="School of Engineering & Technology"
+
+                        readonly>
+
+                </div>
+
+                <div class="form-group password-box">
+
+                    <label>
+
+                        Password
+
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+
+                            type="password"
+
+                            id="password"
+
+                            placeholder="Create Password"
+
+                            required>
+
+                        <i
+
+                            class="fa-solid fa-eye"
+
+                            id="togglePassword">
+
+                        </i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Buttons -->
+
+            <div class="modal-buttons">
+
+                <button
+
+                    type="submit"
+
+                    class="save-btn">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Create Student
+
+                </button>
+
+                <button
+
+                    type="button"
+
+                    class="cancel-btn"
+
+                    onclick="closeStudentModal()">
+
+                    Cancel
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+<!-- =========================
+VIEW STUDENT MODAL
+========================= -->
+
+<div id="viewModal" class="modal">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<h2>
+
+Student Details
+
+</h2>
+
+<button
+class="close-btn"
+onclick="closeViewModal()">
+
+<i class="fa-solid fa-xmark"></i>
+
+</button>
+
+</div>
+
+<div id="studentDetails" class="student-details">
+
+<div class="loading">
+
+Loading Student Details...
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =========================
+DELETE MODAL
+========================= -->
+
+<div id="deleteModal" class="modal">
+
+<div class="modal-content small">
+
+<div class="delete-icon">
+
+<i class="fa-solid fa-trash-can"></i>
+
+</div>
+
+<h2>
+
+Delete Student?
+
+</h2>
+
+<p>
+
+This action cannot be undone.
+
+</p>
+
+<div class="modal-buttons">
+
+<button
+id="confirmDelete"
+class="delete-btn">
+
+Delete
+
+</button>
+
+<button
+class="cancel-btn"
+onclick="closeDeleteModal()">
+
+Cancel
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =========================
+TOAST
+========================= -->
+
+<div id="toast" class="toast"></div>
+
+</main>
+
+</div>
+
+<!-- =========================
+SCRIPTS
+========================= -->
+
+<script src="../js/admin/students.js"></script>
+
+</body>
+
+</html>

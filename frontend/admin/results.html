@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Results | KRMU Quiz Portal</title>
+
+<link rel="stylesheet"
+href="../css/theme.css">
+
+<link rel="stylesheet"
+href="../css/results.css">
+<link rel="stylesheet" href="../css/admin.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<!-- =========================
+SIDEBAR
+========================= -->
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<i class="fa-solid fa-user-shield"></i>
+
+<div>
+
+<h2>KRMU</h2>
+
+<p>Admin Panel</p>
+
+</div>
+
+</div>
+
+<ul class="menu">
+
+<li>
+
+<a href="dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+<span>Dashboard</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="subjects.html">
+
+<i class="fa-solid fa-book"></i>
+
+<span>Subjects</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="questions.html">
+
+<i class="fa-solid fa-circle-question"></i>
+
+<span>Questions</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="students.html">
+
+<i class="fa-solid fa-users"></i>
+
+<span>Students</span>
+
+</a>
+
+</li>
+
+<li class="active">
+
+<a href="results.html">
+
+<i class="fa-solid fa-chart-column"></i>
+
+<span>Results</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="certificates.html">
+
+<i class="fa-solid fa-certificate"></i>
+
+<span>Certificates</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+<span>Settings</span>
+
+</a>
+
+</li>
+
+</ul>
+
+<div class="logout">
+
+<button onclick="logout()">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</button>
+
+</div>
+
+</aside>
+
+<!-- =========================
+MAIN
+========================= -->
+
+<main class="main">
+
+<header>
+
+<div>
+
+<h1>
+
+Result Management
+
+</h1>
+
+<p>
+
+View Quiz Results and Student Performance
+
+</p>
+
+</div>
+
+</header>
+<!-- =========================
+SEARCH & FILTER
+========================= -->
+
+<section class="toolbar">
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="searchResult"
+placeholder="Search Student...">
+
+</div>
+
+<div class="toolbar-right">
+
+<select id="subjectFilter">
+
+<option value="">
+
+All Subjects
+
+</option>
+
+</select>
+
+<span id="resultCount">
+
+Total Results : 0
+
+</span>
+
+</div>
+
+</section>
+
+<!-- =========================
+RESULT TABLE
+========================= -->
+
+<section class="table-card">
+
+<div class="table-header">
+
+<h2>
+
+Quiz Results
+
+</h2>
+
+</div>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>#</th>
+
+<th>Student</th>
+
+<th>Subject</th>
+
+<th>Score</th>
+
+<th>Percentage</th>
+
+<th>Status</th>
+
+<th>Date</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="resultTable">
+
+<tr>
+
+<td colspan="8" class="loading">
+
+<i class="fa-solid fa-spinner fa-spin"></i>
+
+Loading Results...
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<!-- =========================
+EMPTY STATE
+========================= -->
+
+<div
+id="emptyState"
+class="empty-state"
+style="display:none;">
+
+<i class="fa-solid fa-chart-column"></i>
+
+<h2>
+
+No Results Found
+
+</h2>
+
+<p>
+
+No quiz results are available.
+
+</p>
+
+</div>
+<!-- =========================
+VIEW RESULT MODAL
+========================= -->
+
+<div id="viewModal" class="modal">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<h2>
+
+Result Details
+
+</h2>
+
+<button
+class="close-btn"
+onclick="closeViewModal()">
+
+<i class="fa-solid fa-xmark"></i>
+
+</button>
+
+</div>
+
+<div id="resultDetails" class="result-details">
+
+<div class="loading">
+
+Loading Result...
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =========================
+DELETE MODAL
+========================= -->
+
+<div id="deleteModal" class="modal">
+
+<div class="modal-content small">
+
+<div class="delete-icon">
+
+<i class="fa-solid fa-trash-can"></i>
+
+</div>
+
+<h2>
+
+Delete Result?
+
+</h2>
+
+<p>
+
+This action cannot be undone.
+
+</p>
+
+<div class="modal-buttons">
+
+<button
+id="confirmDelete"
+class="delete-btn">
+
+Delete
+
+</button>
+
+<button
+class="cancel-btn"
+onclick="closeDeleteModal()">
+
+Cancel
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =========================
+TOAST
+========================= -->
+
+<div id="toast" class="toast"></div>
+
+</main>
+
+</div>
+
+<!-- =========================
+SCRIPTS
+========================= -->
+
+<script src="../js/admin/results.js"></script>
+
+</body>
+
+</html>

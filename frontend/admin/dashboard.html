@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | KRMU Quiz Portal</title>
+
+    <link rel="stylesheet"
+        href="../css/theme.css">
+
+    <link rel="stylesheet"
+        href="../css/admin.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<!-- ======================
+Sidebar
+====================== -->
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<i class="fa-solid fa-user-shield"></i>
+
+<div>
+
+<h2>KRMU</h2>
+
+<p>Admin Panel</p>
+
+</div>
+
+</div>
+
+<ul class="menu">
+
+<li class="active">
+
+<a href="dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+<span>Dashboard</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="subjects.html">
+
+<i class="fa-solid fa-book"></i>
+
+<span>Subjects</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="questions.html">
+
+<i class="fa-solid fa-circle-question"></i>
+
+<span>Questions</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="students.html">
+
+<i class="fa-solid fa-users"></i>
+
+<span>Students</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="results.html">
+
+<i class="fa-solid fa-chart-column"></i>
+
+<span>Results</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="certificates.html">
+
+<i class="fa-solid fa-certificate"></i>
+
+<span>Certificates</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+<span>Settings</span>
+
+</a>
+
+</li>
+
+</ul>
+
+<div class="logout">
+
+<button onclick="logout()">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</button>
+
+</div>
+
+</aside>
+
+<!-- ======================
+Main Content
+====================== -->
+
+<main class="main">
+
+<header>
+
+<div>
+
+<h1>
+
+Welcome Admin 👋
+
+</h1>
+
+<p>
+
+Manage Quiz Portal Efficiently
+
+</p>
+
+</div>
+
+<div class="admin-profile">
+
+<i class="fa-solid fa-user-tie"></i>
+
+<div>
+
+<h3>
+
+Administrator
+
+</h3>
+
+<span>
+
+KRMU Quiz Portal
+
+</span>
+
+</div>
+
+</div>
+
+</header>
+<!-- ======================
+Statistics Cards
+====================== -->
+
+<section class="stats-grid">
+
+<div class="card">
+
+<div class="card-icon blue">
+
+<i class="fa-solid fa-users"></i>
+
+</div>
+
+<div class="card-info">
+
+<h2 id="totalStudents">0</h2>
+
+<p>Total Students</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-icon gold">
+
+<i class="fa-solid fa-book"></i>
+
+</div>
+
+<div class="card-info">
+
+<h2 id="totalSubjects">0</h2>
+
+<p>Total Subjects</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-icon green">
+
+<i class="fa-solid fa-circle-question"></i>
+
+</div>
+
+<div class="card-info">
+
+<h2 id="totalQuestions">0</h2>
+
+<p>Total Questions</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-icon red">
+
+<i class="fa-solid fa-chart-line"></i>
+
+</div>
+
+<div class="card-info">
+
+<h2 id="passRate">0%</h2>
+
+<p>Pass Rate</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ======================
+Middle Section
+====================== -->
+
+<section class="dashboard-grid">
+
+<!-- Performance -->
+
+<div class="panel">
+
+<div class="panel-header">
+
+<h2>
+
+Performance Overview
+
+</h2>
+
+</div>
+
+<div class="chart-area">
+
+<canvas id="performanceChart"></canvas>
+
+</div>
+
+</div>
+
+<!-- Quick Actions -->
+
+<div class="panel">
+
+<div class="panel-header">
+
+<h2>
+
+Quick Actions
+
+</h2>
+
+</div>
+
+<div class="quick-actions">
+
+<a href="subjects.html" class="action-btn">
+
+<i class="fa-solid fa-plus"></i>
+
+<span>Add Subject</span>
+
+</a>
+
+<a href="questions.html" class="action-btn">
+
+<i class="fa-solid fa-circle-plus"></i>
+
+<span>Add Question</span>
+
+</a>
+
+<a href="results.html" class="action-btn">
+
+<i class="fa-solid fa-square-poll-vertical"></i>
+
+<span>View Results</span>
+
+</a>
+
+<a href="certificates.html" class="action-btn">
+
+<i class="fa-solid fa-certificate"></i>
+
+<span>Certificates</span>
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ======================
+Recent Activities
+====================== -->
+
+<section class="panel">
+
+<div class="panel-header">
+
+<h2>
+
+Recent Quiz Attempts
+
+</h2>
+
+</div>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Student</th>
+
+<th>Subject</th>
+
+<th>Score</th>
+
+<th>Grade</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody id="recentResults">
+
+<tr>
+
+<td colspan="5" style="text-align:center;">
+
+Loading...
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="../js/admin/dashboard.js"></script>
+
+</body>
+
+</html>

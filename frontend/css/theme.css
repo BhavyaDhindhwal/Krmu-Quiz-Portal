@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+
+    --blue:#0B3D91;
+    --darkBlue:#062B78;
+    --gold:#FFD700;
+    --goldDark:#FFC107;
+    --white:#ffffff;
+    --bg:#EEF3FF;
+    --text:#444;
+    --lightText:#777;
+
+    --success:#16A34A;
+    --danger:#DC2626;
+    --warning:#F59E0B;
+
+    --radius:18px;
+
+    --shadow:
+    0 10px 30px rgba(0,0,0,.12);
+
+}
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+
+}
+
+body{
+
+    background:var(--bg);
+
+    color:var(--text);
+
+}
+
+img{
+
+    max-width:100%;
+
+}
+
+a{
+
+    text-decoration:none;
+
+}
+
+button{
+
+    cursor:pointer;
+
+    border:none;
+
+    transition:.35s;
+
+}
+.card{
+
+    background:white;
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+}
+.btn-primary{
+
+    background:linear-gradient(
+    135deg,
+    var(--blue),
+    var(--darkBlue));
+
+    color:white;
+
+    padding:14px 28px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-4px);
+
+}
+.btn-gold{
+
+    background:linear-gradient(
+    135deg,
+    var(--gold),
+    var(--goldDark));
+
+    color:var(--blue);
+
+    padding:14px 28px;
+
+    border-radius:12px;
+
+    font-weight:700;
+
+}
+
+.btn-gold:hover{
+
+    transform:translateY(-4px);
+
+}
+input,
+select{
+
+    width:100%;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    border:1px solid #ddd;
+
+    outline:none;
+
+}
+
+input:focus{
+
+    border-color:var(--blue);
+
+}
+.fade{
+
+    animation:fade .6s ease;
+
+}
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}

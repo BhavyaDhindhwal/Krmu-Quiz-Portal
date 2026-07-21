@@ -1,0 +1,772 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+
+    --blue:#0B3D91;
+    --darkBlue:#062B78;
+    --gold:#FFD700;
+    --goldDark:#FFC107;
+    --white:#ffffff;
+    --light:#EEF3FF;
+    --green:#16A34A;
+    --red:#DC2626;
+    --shadow:0 15px 35px rgba(0,0,0,.15);
+
+}
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+
+}
+
+body{
+
+    background:linear-gradient(135deg,#062B78,#0B3D91,#1F5AC8);
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:35px;
+
+}
+
+.container{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+}
+
+.result-card{
+
+    width:900px;
+
+    background:#fff;
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.25);
+
+}
+
+/* ===================================
+HEADER
+=================================== */
+
+.header{
+
+    background:linear-gradient(135deg,#062B78,#0B3D91);
+
+    text-align:center;
+
+    color:#fff;
+
+    position:relative;
+
+    padding:40px 40px 120px;
+
+}
+
+.header::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+    height:5px;
+
+    background:#FFD700;
+
+}
+
+.logo{
+
+    width:80px;
+
+    height:80px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#FFD700;
+
+    color:#0B3D91;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:34px;
+
+    margin-bottom:18px;
+
+}
+
+.header h1{
+
+    color:#FFD700;
+
+    font-size:40px;
+
+    font-weight:800;
+
+    margin-bottom:10px;
+
+}
+
+.header p{
+
+    color:#EEF3FF;
+
+    font-size:16px;
+
+}
+
+/* ===================================
+SCORE SECTION
+=================================== */
+
+.score-section{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-top:-85px;
+
+    margin-bottom:25px;
+
+    position:relative;
+
+    z-index:20;
+
+}
+
+.score-ring{
+
+    position:relative;
+
+    width:220px;
+
+    height:220px;
+
+}
+
+.score-ring svg{
+
+    width:220px;
+
+    height:220px;
+
+    transform:rotate(-90deg);
+
+}
+
+.bg{
+
+    fill:none;
+
+    stroke:#ECECEC;
+
+    stroke-width:12;
+
+}
+
+.progress{
+
+    fill:none;
+
+    stroke:#FFD700;
+
+    stroke-width:12;
+
+    stroke-linecap:round;
+
+    stroke-dasharray:565;
+
+    stroke-dashoffset:565;
+
+    transition:1.2s ease;
+
+}
+
+.score-content{
+
+    position:absolute;
+
+    top:50%;
+
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:150px;
+
+    height:150px;
+
+    background:#fff;
+
+    border-radius:50%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+}
+
+.score-content h2{
+
+    font-size:52px;
+
+    font-weight:800;
+
+    color:#0B3D91;
+
+    line-height:1;
+
+}
+
+.score-content span{
+
+    margin-top:10px;
+
+    color:#666;
+
+    font-size:14px;
+
+}
+/* ===================================
+STUDENT INFO
+=================================== */
+
+.student-info{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.student-info h2{
+
+    font-size:34px;
+
+    color:var(--blue);
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+}
+
+.status{
+
+    display:inline-block;
+
+    padding:10px 35px;
+
+    border-radius:40px;
+
+    background:var(--green);
+
+    color:#fff;
+
+    font-weight:700;
+
+    font-size:15px;
+
+    letter-spacing:1px;
+
+    box-shadow:0 8px 20px rgba(22,163,74,.30);
+
+}
+
+/* ===================================
+STATISTICS
+=================================== */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+    padding:0 35px 35px;
+
+}
+
+.stat-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:25px 20px;
+
+    text-align:center;
+
+    border-top:5px solid var(--gold);
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 18px 35px rgba(0,0,0,.15);
+
+}
+
+.icon{
+
+    width:65px;
+
+    height:65px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(135deg,var(--gold),var(--goldDark));
+
+    color:var(--blue);
+
+    font-size:28px;
+
+    margin-bottom:15px;
+
+}
+
+.stat-card h3{
+
+    color:var(--blue);
+
+    font-size:32px;
+
+    margin-bottom:8px;
+
+    font-weight:700;
+
+}
+
+.stat-card p{
+
+    color:#666;
+
+    font-size:15px;
+
+}
+
+/* ===================================
+PERFORMANCE CARD
+=================================== */
+
+.performance-card{
+
+    margin:0 35px 35px;
+
+    background:linear-gradient(135deg,#FFFBE8,#FFF2B0);
+
+    border-left:6px solid var(--gold);
+
+    border-radius:18px;
+
+    padding:25px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.performance-icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,var(--gold),var(--goldDark));
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:var(--blue);
+
+    font-size:30px;
+
+    flex-shrink:0;
+
+}
+
+.performance-content{
+
+    flex:1;
+
+}
+
+.performance-content h3{
+
+    color:var(--blue);
+
+    font-size:24px;
+
+    margin-bottom:10px;
+
+}
+
+.performance-content p{
+
+    color:#555;
+
+    line-height:1.7;
+
+    font-size:15px;
+
+}
+/* ===================================
+ACTION BUTTONS
+=================================== */
+
+.action-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:0 35px 40px;
+
+}
+
+.action-buttons button{
+
+    flex:1;
+
+    max-width:260px;
+
+    padding:16px 24px;
+
+    border:none;
+
+    border-radius:14px;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+.certificate-btn{
+
+    background:linear-gradient(135deg,var(--gold),var(--goldDark));
+
+    color:var(--blue);
+
+}
+
+.dashboard-btn{
+
+    background:linear-gradient(135deg,var(--blue),var(--darkBlue));
+
+    color:white;
+
+}
+
+.action-buttons button:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.18);
+
+}
+
+/* ===================================
+FOOTER
+=================================== */
+
+footer{
+
+    border-top:1px solid #E8E8E8;
+
+    text-align:center;
+
+    padding:20px;
+
+    color:#777;
+
+    font-size:15px;
+
+}
+
+footer strong{
+
+    color:var(--blue);
+
+}
+
+/* ===================================
+ANIMATION
+=================================== */
+
+.result-card{
+
+    animation:fadeUp .6s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ===================================
+RESPONSIVE
+=================================== */
+
+@media(max-width:992px){
+
+    body{
+
+        padding:20px;
+
+    }
+
+    .result-card{
+
+        width:100%;
+
+    }
+
+    .stats{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .action-buttons{
+
+        flex-direction:column;
+
+    }
+
+    .action-buttons button{
+
+        width:100%;
+
+        max-width:none;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .header{
+
+        padding:35px 20px 110px;
+
+    }
+
+    .header h1{
+
+        font-size:30px;
+
+    }
+
+    .logo{
+
+        width:65px;
+
+        height:65px;
+
+        font-size:28px;
+
+    }
+
+    .score-section{
+
+        margin-top:-70px;
+
+    }
+
+    .score-ring{
+
+        width:180px;
+
+        height:180px;
+
+    }
+
+    .score-ring svg{
+
+        width:180px;
+
+        height:180px;
+
+    }
+
+    .score-content{
+
+        width:125px;
+
+        height:125px;
+
+    }
+
+    .score-content h2{
+
+        font-size:40px;
+
+    }
+
+    .student-info h2{
+
+        font-size:28px;
+
+    }
+
+    .stats{
+
+        grid-template-columns:1fr;
+
+        padding:0 20px 25px;
+
+    }
+
+    .performance-card{
+
+        margin:0 20px 25px;
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .header h1{
+
+        font-size:24px;
+
+    }
+
+    .header p{
+
+        font-size:14px;
+
+    }
+
+    .score-ring{
+
+        width:160px;
+
+        height:160px;
+
+    }
+
+    .score-ring svg{
+
+        width:160px;
+
+        height:160px;
+
+    }
+
+    .score-content{
+
+        width:110px;
+
+        height:110px;
+
+    }
+
+    .score-content h2{
+
+        font-size:34px;
+
+    }
+
+    .student-info h2{
+
+        font-size:22px;
+
+    }
+
+}

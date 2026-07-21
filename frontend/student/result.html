@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Quiz Result</title>
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet"
+href="../css/result.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="result-card">
+
+<!-- ======================
+Header
+====================== -->
+
+<div class="header">
+
+<div class="logo">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+</div>
+
+<h1>
+
+KRMU QUIZ PORTAL
+
+</h1>
+
+<p>
+
+Student Assessment Report
+
+</p>
+
+</div>
+
+<!-- ======================
+Overall Score
+====================== -->
+
+<div class="score-section">
+
+<div class="score-ring">
+
+<svg width="220"
+height="220">
+
+<circle
+
+class="bg"
+
+cx="110"
+
+cy="110"
+
+r="90">
+
+</circle>
+
+<circle
+
+id="progressCircle"
+
+class="progress"
+
+cx="110"
+
+cy="110"
+
+r="90">
+
+</circle>
+
+</svg>
+
+<div class="score-content">
+
+<h2 id="percentage">
+
+0%
+
+</h2>
+
+<span>
+
+Overall Score
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ======================
+Student
+====================== -->
+
+<div class="student-info">
+
+<h2 id="studentName">
+
+Student Name
+
+</h2>
+
+<div
+id="status"
+class="status">
+
+PASS
+
+</div>
+
+</div>
+
+<!-- ======================
+Statistics
+====================== -->
+
+<div class="stats">
+
+<div class="stat-card">
+
+<div class="icon">
+
+<i class="fa-solid fa-circle-check"></i>
+
+</div>
+
+<h3
+id="correct">
+
+0
+
+</h3>
+
+<p>
+
+Correct
+
+</p>
+
+</div>
+
+<div class="stat-card">
+
+<div class="icon">
+
+<i class="fa-solid fa-circle-xmark"></i>
+
+</div>
+
+<h3
+id="wrong">
+
+0
+
+</h3>
+
+<p>
+
+Wrong
+
+</p>
+
+</div>
+
+<div class="stat-card">
+
+<div class="icon">
+
+<i class="fa-solid fa-medal"></i>
+
+</div>
+
+<h3
+id="grade">
+
+A+
+
+</h3>
+
+<p>
+
+Grade
+
+</p>
+
+</div>
+
+<div class="stat-card">
+
+<div class="icon">
+
+<i class="fa-solid fa-trophy"></i>
+
+</div>
+
+<h3
+id="score">
+
+0
+
+</h3>
+
+<p>
+
+Score
+
+</p>
+
+</div>
+
+</div>
+<!-- ======================
+Performance
+====================== -->
+
+<div class="performance-card">
+
+    <div class="performance-icon">
+
+        <i class="fa-solid fa-award"></i>
+
+    </div>
+
+    <div class="performance-content">
+
+        <h3>
+
+            Performance Summary
+
+        </h3>
+
+        <p id="message">
+
+            Excellent Performance! Keep up the great work.
+
+        </p>
+
+    </div>
+
+</div>
+
+<!-- ======================
+Buttons
+====================== -->
+
+<div class="action-buttons">
+
+    <button
+        class="certificate-btn"
+        onclick="downloadCertificate()">
+
+        <i class="fa-solid fa-download"></i>
+
+        Download Certificate
+
+    </button>
+
+    <button
+        class="dashboard-btn"
+        onclick="goDashboard()">
+
+        <i class="fa-solid fa-house"></i>
+
+        Back to Dashboard
+
+    </button>
+
+</div>
+
+<!-- ======================
+Footer
+====================== -->
+
+<footer>
+
+    <p>
+
+        © 2026 KRMU Quiz Portal |
+        Designed By
+        <strong>Bhavya Dhindhwal</strong>
+
+    </p>
+
+</footer>
+
+</div>
+
+</div>
+
+<script src="../js/result.js"></script>
+
+</body>
+
+</html>

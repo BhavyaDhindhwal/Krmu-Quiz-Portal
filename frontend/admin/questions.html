@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Question Management | KRMU Quiz Portal</title>
+
+<link rel="stylesheet" href="../css/theme.css">
+
+<link rel="stylesheet" href="../css/admin.css">
+
+<link rel="stylesheet" href="../css/questions.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<!-- =========================
+SIDEBAR
+========================= -->
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<i class="fa-solid fa-user-shield"></i>
+
+<div>
+
+<h2>KRMU</h2>
+
+<p>Admin Panel</p>
+
+</div>
+
+</div>
+
+<ul class="menu">
+
+<li>
+
+<a href="dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+<span>Dashboard</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="subjects.html">
+
+<i class="fa-solid fa-book"></i>
+
+<span>Subjects</span>
+
+</a>
+
+</li>
+
+<li class="active">
+
+<a href="questions.html">
+
+<i class="fa-solid fa-circle-question"></i>
+
+<span>Questions</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="students.html">
+
+<i class="fa-solid fa-users"></i>
+
+<span>Students</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="results.html">
+
+<i class="fa-solid fa-chart-column"></i>
+
+<span>Results</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="certificates.html">
+
+<i class="fa-solid fa-certificate"></i>
+
+<span>Certificates</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+<span>Settings</span>
+
+</a>
+
+</li>
+
+</ul>
+
+<div class="logout">
+
+<button onclick="logout()">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</button>
+
+</div>
+
+</aside>
+
+<!-- =========================
+MAIN CONTENT
+========================= -->
+
+<main class="main">
+
+<header>
+
+<div>
+
+<h1>
+
+Question Management
+
+</h1>
+
+<p>
+
+Create, Update and Manage Quiz Questions
+
+</p>
+
+</div>
+
+<button
+id="addQuestionBtn"
+class="add-btn">
+
+<i class="fa-solid fa-plus"></i>
+
+Add Question
+
+</button>
+
+</header>
+<!-- =========================
+SEARCH & FILTER
+========================= -->
+
+<section class="toolbar">
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="searchQuestion"
+placeholder="Search Question...">
+
+</div>
+
+<div class="filter-box">
+
+<select id="filterSubject">
+
+<option value="">All Subjects</option>
+
+</select>
+
+</div>
+
+</section>
+
+<!-- =========================
+QUESTION TABLE
+========================= -->
+
+<section class="table-card">
+
+<div class="table-header">
+
+<h2>
+
+All Questions
+
+</h2>
+
+<span id="questionCount">
+
+Total Questions : 0
+
+</span>
+
+</div>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>#</th>
+
+<th>Subject</th>
+
+<th>Question</th>
+
+<th>Marks</th>
+
+<th>Difficulty</th>
+
+<th>Correct Answer</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="questionTable">
+
+<tr>
+
+<td colspan="7" class="loading">
+
+<i class="fa-solid fa-spinner fa-spin"></i>
+
+Loading Questions...
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<!-- =========================
+EMPTY STATE
+========================= -->
+
+<div
+id="emptyState"
+class="empty-state"
+style="display:none;">
+
+<i class="fa-solid fa-circle-question"></i>
+
+<h2>
+
+No Questions Found
+
+</h2>
+
+<p>
+
+Click the <strong>Add Question</strong> button to create your first quiz question.
+
+</p>
+
+</div>
+<!-- =========================
+ADD / EDIT QUESTION MODAL
+========================= -->
+
+<div id="questionModal" class="modal">
+
+<div class="modal-content large">
+
+<div class="modal-header">
+
+<h2 id="modalTitle">
+
+Add Question
+
+</h2>
+
+<button
+class="close-btn"
+onclick="closeModal()">
+
+<i class="fa-solid fa-xmark"></i>
+
+</button>
+
+</div>
+
+<form id="questionForm">
+
+<input
+type="hidden"
+id="questionId">
+
+<div class="form-group">
+
+<label>
+
+Subject
+
+</label>
+
+<select id="subject" required>
+
+<option value="">
+
+Select Subject
+
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>
+
+Question
+
+</label>
+
+<textarea
+id="question"
+rows="3"
+placeholder="Enter Question"
+required></textarea>
+
+</div>
+
+<div class="grid-2">
+
+<div class="form-group">
+
+<label>
+
+Option A
+
+</label>
+
+<input
+type="text"
+id="option1"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>
+
+Option B
+
+</label>
+
+<input
+type="text"
+id="option2"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>
+
+Option C
+
+</label>
+
+<input
+type="text"
+id="option3"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>
+
+Option D
+
+</label>
+
+<input
+type="text"
+id="option4"
+required>
+
+</div>
+
+</div>
+
+<div class="grid-3">
+
+<div class="form-group">
+
+<label>
+
+Correct Answer
+
+</label>
+
+<select id="correctAnswer">
+
+<option value="0">Option A</option>
+
+<option value="1">Option B</option>
+
+<option value="2">Option C</option>
+
+<option value="3">Option D</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>
+
+Difficulty
+
+</label>
+
+<select id="difficulty">
+
+<option value="Easy">Easy</option>
+
+<option value="Medium">Medium</option>
+
+<option value="Hard">Hard</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>
+
+Marks
+
+</label>
+
+<input
+type="number"
+id="marks"
+value="5"
+min="1">
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>
+
+Explanation
+
+</label>
+
+<textarea
+id="explanation"
+rows="3"
+placeholder="Explanation (Optional)"></textarea>
+
+</div>
+
+<div class="modal-buttons">
+
+<button
+type="submit"
+class="save-btn">
+
+<i class="fa-solid fa-floppy-disk"></i>
+
+Save Question
+
+</button>
+
+<button
+type="button"
+class="cancel-btn"
+onclick="closeModal()">
+
+Cancel
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+<!-- =========================
+DELETE MODAL
+========================= -->
+
+<div id="deleteModal" class="modal">
+
+<div class="modal-content small">
+
+<div class="delete-icon">
+
+<i class="fa-solid fa-trash-can"></i>
+
+</div>
+
+<h2>
+
+Delete Question?
+
+</h2>
+
+<p>
+
+This action cannot be undone.
+
+</p>
+
+<div class="modal-buttons">
+
+<button
+id="confirmDelete"
+class="delete-btn">
+
+Delete
+
+</button>
+
+<button
+class="cancel-btn"
+onclick="closeDeleteModal()">
+
+Cancel
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =========================
+TOAST
+========================= -->
+
+<div id="toast" class="toast"></div>
+
+</main>
+
+</div>
+
+<script src="../js/admin/questions.js"></script>
+
+</body>
+
+</html>

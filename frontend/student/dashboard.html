@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>KRMU Quiz Portal</title>
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet"
+href="../css/dashboard.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- ======================
+Sidebar
+====================== -->
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<div class="logo-icon">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+</div>
+
+<div>
+
+<h2>KRMU</h2>
+
+<p>Quiz Portal</p>
+
+</div>
+
+</div>
+
+<ul>
+
+<li class="active"
+onclick="goDashboard()">
+
+<i class="fa-solid fa-house"></i>
+
+<span>
+
+Dashboard
+
+</span>
+
+</li>
+
+<li onclick="goSubjects()">
+
+<i class="fa-solid fa-book-open"></i>
+
+<span>
+
+Subjects
+
+</span>
+
+</li>
+
+<li onclick="goResults()">
+
+<i class="fa-solid fa-chart-column"></i>
+
+<span>
+
+Results
+
+</span>
+
+</li>
+
+<li onclick="goCertificate()">
+
+<i class="fa-solid fa-certificate"></i>
+
+<span>
+
+Certificate
+
+</span>
+
+</li>
+
+</ul>
+
+<div class="logout">
+
+<button onclick="logout()">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</button>
+
+</div>
+
+</aside>
+
+<!-- ======================
+Main
+====================== -->
+
+<main class="main">
+
+<!-- Header -->
+
+<header>
+
+<div>
+
+<h1>
+
+Welcome,
+
+<span id="studentName">
+
+Student
+
+</span>
+
+👋
+
+</h1>
+
+<p>
+
+Ready to test your knowledge today?
+
+</p>
+
+</div>
+<div class="profile">
+
+    <img
+        id="profilePhoto"
+        src="../images/default-user.png"
+        alt="Student Photo">
+
+    <div>
+
+        <h3 id="studentName2">
+
+            Student
+
+        </h3>
+
+        <p id="studentCourse">
+
+            B.Tech Full Stack Development
+
+        </p>
+
+    </div>
+
+</div>
+
+</header>
+
+<!-- Search -->
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+
+type="text"
+
+placeholder="Search Subject..."
+
+id="searchSubject"
+
+onkeyup="searchSubjects()">
+
+</div>
+
+<!-- Cards -->
+
+<section class="cards">
+
+<div class="card">
+
+<div class="icon">
+
+<i class="fa-solid fa-book"></i>
+
+</div>
+
+<div>
+
+<h2 id="totalSubjects">
+
+0
+
+</h2>
+
+<p>
+
+Subjects
+
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="icon">
+
+<i class="fa-solid fa-circle-check"></i>
+
+</div>
+
+<div>
+
+<h2 id="attemptQuiz">
+
+0
+
+</h2>
+
+<p>
+
+Attempted
+
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="icon">
+
+<i class="fa-solid fa-trophy"></i>
+
+</div>
+
+<div>
+
+<h2 id="highestScore">
+
+0%
+
+</h2>
+
+<p>
+
+Highest
+
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="icon">
+
+<i class="fa-solid fa-chart-line"></i>
+
+</div>
+
+<div>
+
+<h2 id="averageScore">
+
+0%
+
+</h2>
+
+<p>
+
+Average
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ======================
+Analytics
+====================== -->
+
+<section class="analytics">
+
+    <div class="chart-card">
+
+        <h2>Performance Graph</h2>
+
+        <canvas
+            id="performanceChart"
+            height="280"
+            style="border:2px solid red;">
+        </canvas>
+
+    </div>
+
+    <div class="chart-card">
+
+        <h2>Recent Quiz History</h2>
+
+        <table class="history-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Subject</th>
+
+                    <th>%</th>
+
+                    <th>Grade</th>
+
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="historyTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- Subject Heading -->
+
+<div class="section-title">
+
+<h2>
+
+Available Subjects
+
+</h2>
+
+<p>
+
+Choose a subject to start your quiz
+
+</p>
+
+</div>
+
+<!-- Subject Grid -->
+
+<div
+
+class="subject-grid"
+
+id="subjectList">
+
+<!-- JS -->
+
+</div>
+<!-- ======================
+Quick Tips
+====================== -->
+
+<section class="tips">
+
+    <div class="tip-card">
+
+        <i class="fa-solid fa-lightbulb"></i>
+
+        <div>
+
+            <h3>Quiz Tips</h3>
+
+            <p>
+
+                Read every question carefully before selecting an answer.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="tip-card">
+
+        <i class="fa-solid fa-stopwatch"></i>
+
+        <div>
+
+            <h3>Time Management</h3>
+
+            <p>
+
+                Try to complete each question within the given time.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="tip-card">
+
+        <i class="fa-solid fa-award"></i>
+
+        <div>
+
+            <h3>Best Performance</h3>
+
+            <p>
+
+                Score above 90% to earn an A+ Grade Certificate.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ======================
+Footer
+====================== -->
+
+<footer>
+
+    <p>
+
+        © 2026 KRMU Quiz Portal |
+
+        Designed By
+
+        <strong>
+
+            Bhavya Dhindhwal
+
+        </strong>
+
+    </p>
+
+</footer>
+
+</main>
+
+</div>
+
+<!-- Loading Screen -->
+
+<div id="loader">
+
+    <div class="spinner">
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../js/dashboard.js"></script>
+
+<script>
+
+window.onload=function(){
+
+setTimeout(()=>{
+
+document.getElementById("loader").style.display="none";
+
+},600);
+
+}
+
+</script>
+
+</body>
+
+</html>

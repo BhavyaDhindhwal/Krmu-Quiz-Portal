@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Registration | KRMU Quiz Portal</title>
+
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+<div class="login-card">
+
+<img src="logo.png" class="login-logo">
+
+<h1>KRMU Quiz Portal</h1>
+
+<h2>Student Registration</h2>
+
+<p class="subtitle">
+Create your account to access quizzes and certificates
+</p>
+
+<!-- Full Name -->
+
+<div class="input-group">
+
+<i class="fa-solid fa-user"></i>
+
+<input
+type="text"
+id="fullName"
+placeholder="Full Name">
+
+</div>
+
+<!-- Roll Number -->
+
+<div class="input-group">
+
+<i class="fa-solid fa-id-card"></i>
+
+<input
+type="text"
+id="rollNo"
+placeholder="University Roll Number">
+
+</div>
+
+<!-- Course -->
+
+<div class="input-group">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+<select id="course">
+
+<option value="">Select Course</option>
+
+<option>B.Tech CSE</option>
+
+<option selected>B.Tech Full Stack Development</option>
+
+<option>BCA</option>
+
+<option>MCA</option>
+
+<option>BBA</option>
+
+<option>MBA</option>
+
+</select>
+
+</div>
+
+<!-- Semester -->
+
+<div class="input-group">
+
+<i class="fa-solid fa-layer-group"></i>
+
+<select id="semester">
+
+<option value="">Select Semester</option>
+
+<option>1</option>
+<option selected>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+<option>6</option>
+<option>7</option>
+<option>8</option>
+
+</select>
+
+</div>
+
+<!-- Department -->
+
+<div class="input-group">
+
+<i class="fa-solid fa-building"></i>
+
+<select id="department">
+
+<option value="">Select Department</option>
+
+<option selected>School of Engineering & Technology</option>
+
+<option>School of Management</option>
+
+<option>School of Computer Applications</option>
+
+</select>
+
+</div>
+
+<!-- Email -->
+
+<div class="input-group">
+
+<i class="fa-solid fa-envelope"></i>
+
+<input
+type="email"
+id="email"
+placeholder="University Email">
+
+</div>
+
+<!-- Phone -->
+
+<div class="input-group">
+
+<i class="fa-solid fa-phone"></i>
+
+<input
+type="tel"
+id="phone"
+placeholder="Mobile Number">
+
+</div>
+
+<!-- Password -->
+
+<div class="input-group">
+
+<i class="fa-solid fa-lock"></i>
+
+<input
+type="password"
+id="password"
+placeholder="Password">
+
+</div>
+
+<!-- Confirm Password -->
+
+<div class="input-group">
+
+<i class="fa-solid fa-lock"></i>
+
+<input
+type="password"
+id="confirmPassword"
+placeholder="Confirm Password">
+
+</div>
+
+<!-- Student Photo -->
+
+<div class="input-group">
+
+<i class="fa-solid fa-image"></i>
+
+<input
+type="file"
+id="photo"
+accept="image/*">
+
+</div>
+
+<button onclick="register()">
+
+<i class="fa-solid fa-user-plus"></i>
+
+Register
+
+</button>
+
+<p>
+
+Already have an account?
+
+<a href="login.html">
+
+Login
+
+</a>
+
+</p>
+
+<a href="../student.html" class="back-link">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Back to Student Panel
+
+</a>
+
+</div>
+
+</div>
+
+<script src="../js/register.js"></script>
+
+</body>
+
+</html>

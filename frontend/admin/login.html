@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Administrator Login | KRMU Quiz Portal</title>
+
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+<div class="login-card">
+
+<!-- Agar logo nahi hai to ye automatically hide ho jayega -->
+
+<img src="logo.png"
+class="login-logo"
+alt="KRMU Logo"
+onerror="this.style.display='none'">
+
+<h1>KRMU Quiz Portal</h1>
+
+<h2>Administrator Login</h2>
+
+<p class="subtitle">
+
+Authorized Access Only
+
+</p>
+
+<div class="input-group">
+
+<i class="fa-solid fa-user-shield"></i>
+
+<input
+type="text"
+id="username"
+placeholder="Enter Username">
+
+</div>
+
+<div class="input-group">
+
+<i class="fa-solid fa-lock"></i>
+
+<input
+type="password"
+id="password"
+placeholder="Enter Password">
+
+<span
+class="toggle-password"
+onclick="togglePassword()">
+
+<i class="fa-solid fa-eye"></i>
+
+</span>
+
+</div>
+
+<button
+class="login-btn"
+onclick="adminLogin()">
+
+<i class="fa-solid fa-right-to-bracket"></i>
+
+Login
+
+</button>
+
+<p>
+
+Only authorized administrators can access this portal.
+
+</p>
+
+<a
+href="../index.html"
+class="back-link">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Back To Home
+
+</a>
+
+</div>
+
+</div>
+
+<script src="../js/adminLogin.js"></script>
+
+<script>
+
+function togglePassword(){
+
+const password=document.getElementById("password");
+
+const icon=document.querySelector(".toggle-password i");
+
+if(password.type==="password"){
+
+password.type="text";
+
+icon.className="fa-solid fa-eye-slash";
+
+}
+else{
+
+password.type="password";
+
+icon.className="fa-solid fa-eye";
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>

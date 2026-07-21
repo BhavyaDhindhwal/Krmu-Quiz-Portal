@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Certificates | KRMU Quiz Portal</title>
+
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/admin.css">
+<link rel="stylesheet" href="../css/certificates.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<!-- =========================
+SIDEBAR
+========================= -->
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<i class="fa-solid fa-user-shield"></i>
+
+<div>
+
+<h2>KRMU</h2>
+
+<p>Admin Panel</p>
+
+</div>
+
+</div>
+
+<ul class="menu">
+
+<li>
+
+<a href="dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+<span>Dashboard</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="subjects.html">
+
+<i class="fa-solid fa-book"></i>
+
+<span>Subjects</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="questions.html">
+
+<i class="fa-solid fa-circle-question"></i>
+
+<span>Questions</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="students.html">
+
+<i class="fa-solid fa-users"></i>
+
+<span>Students</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="results.html">
+
+<i class="fa-solid fa-chart-column"></i>
+
+<span>Results</span>
+
+</a>
+
+</li>
+
+<li class="active">
+
+<a href="certificates.html">
+
+<i class="fa-solid fa-certificate"></i>
+
+<span>Certificates</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+<span>Settings</span>
+
+</a>
+
+</li>
+
+</ul>
+
+<div class="logout">
+
+<button onclick="logout()">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</button>
+
+</div>
+
+</aside>
+
+<!-- =========================
+MAIN
+========================= -->
+
+<main class="main">
+
+<header>
+
+<div>
+
+<h1>
+
+<i class="fa-solid fa-certificate"></i>
+
+Certificate Management
+
+</h1>
+
+<p>
+
+Generate, Verify, Print and Download Student Certificates
+
+</p>
+
+</div>
+
+<div class="header-right">
+
+<div class="total-card">
+
+<h2 id="certificateCountNumber">
+
+0
+
+</h2>
+
+<span>
+
+Certificates
+
+</span>
+
+</div>
+
+</div>
+
+</header>
+<!-- =========================
+SEARCH & FILTER
+========================= -->
+
+<section class="toolbar">
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+
+type="text"
+
+id="searchCertificate"
+
+placeholder="Search Student Name">
+
+</div>
+
+<select id="subjectFilter">
+
+<option value="">
+
+All Subjects
+
+</option>
+
+</select>
+
+<select id="statusFilter">
+
+<option value="">
+
+All Status
+
+</option>
+
+<option>
+
+Pass
+
+</option>
+
+<option>
+
+Fail
+
+</option>
+
+</select>
+
+<button
+
+class="refresh-btn"
+
+onclick="refreshCertificates()">
+
+<i class="fa-solid fa-rotate"></i>
+
+Refresh
+
+</button>
+
+</section>
+
+<!-- =========================
+CERTIFICATE TABLE
+========================= -->
+
+<section class="table-card">
+
+<div class="table-header">
+
+<h2>
+
+Generated Certificates
+
+</h2>
+
+</div>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>#</th>
+
+<th>Photo</th>
+
+<th>Certificate ID</th>
+
+<th>Student</th>
+
+<th>Subject</th>
+
+<th>Grade</th>
+
+<th>Percentage</th>
+
+<th>Status</th>
+
+<th>Date</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="certificateTable">
+
+<tr>
+
+<td colspan="8" class="loading">
+
+<i class="fa-solid fa-spinner fa-spin"></i>
+
+Loading Certificates...
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<!-- =========================
+EMPTY STATE
+========================= -->
+
+<div
+id="emptyState"
+class="empty-state"
+style="display:none;">
+
+<i class="fa-solid fa-certificate"></i>
+
+<h2>
+
+No Certificate Available
+
+</h2>
+
+<p>
+
+Certificates will automatically appear after students pass the quiz.
+
+</p>
+
+</div>
+<!-- =========================
+VIEW CERTIFICATE MODAL
+========================= -->
+
+<div id="viewModal" class="modal">
+
+<div class="modal-content certificate-modal">
+
+<div class="modal-header">
+
+<h2>
+
+Certificate Preview
+
+</h2>
+
+<button
+class="close-btn"
+onclick="closeViewModal()">
+
+<i class="fa-solid fa-xmark"></i>
+
+</button>
+
+</div>
+
+<div id="certificatePreview" class="certificate-preview">
+
+<div class="loading-preview">
+
+<i class="fa-solid fa-spinner fa-spin"></i>
+
+Preparing Certificate...
+
+</div>
+
+</div>
+
+<div class="modal-buttons">
+
+<button
+class="print-btn"
+onclick="printCertificate()">
+
+<i class="fa-solid fa-print"></i>
+
+Print
+
+</button>
+
+<button
+id="downloadBtn"
+class="download-btn">
+
+<i class="fa-solid fa-download"></i>
+
+Download
+
+</button>
+
+<button
+class="cancel-btn"
+onclick="closeViewModal()">
+
+<i class="fa-solid fa-xmark"></i>
+
+Close
+
+</button>
+
+</div>
+</div>
+
+</div>
+
+<!-- =========================
+DELETE MODAL
+========================= -->
+
+<div id="deleteModal" class="modal">
+
+<div class="modal-content small">
+
+<div class="delete-icon">
+
+<i class="fa-solid fa-trash-can"></i>
+
+</div>
+
+<h2>
+
+Delete Certificate?
+
+</h2>
+
+<p>
+
+This certificate record will be permanently deleted.
+
+</p>
+
+<div class="modal-buttons">
+
+<button
+id="confirmDelete"
+class="delete-btn">
+
+Delete
+
+</button>
+
+<button
+class="cancel-btn"
+onclick="closeDeleteModal()">
+
+Cancel
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =========================
+TOAST
+========================= -->
+
+<div id="toast" class="toast"></div>
+
+</main>
+
+</div>
+
+<!-- =========================
+SCRIPTS
+========================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="../js/admin/certificates.js"></script>
+
+</body>
+
+</html>
